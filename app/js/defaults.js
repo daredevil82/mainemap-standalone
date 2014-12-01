@@ -30,10 +30,10 @@ function Defaults(){
 
     this.getUrls = function(){
         return {
-            counties : "/static/data/us_counties.json",
-            states : "/static/data/us-states.json",
-            maine : "/static/data/maine.json",
-            cities : "/static/data/maine_cities.csv"
+            counties : "app/data/us_counties.json",
+            states : "app/data/us-states.json",
+            maine : "app/data/maine.json",
+            cities : "app/data/maine_cities.csv"
         };
     }
 
@@ -69,11 +69,7 @@ function Defaults(){
         return "<div id = 'county_name' class = 'county_record'>County: <span id = 'county'></span></div>" + 
                         "<div id = 'county_fips' class = 'county_record'>FIPS: <span id = 'fips'></span></div>" +
                         "<div class = 'extra_data'><span class = 'pop_year'>2000</span> Population: <span id = 'county_population'</span></div>" + 
-                        "<div class = 'extra_data'><span class = 'pop_year'>2000</span> Density (Sq Mi): <span id = 'county_density'</span></div>" +
-                        "<div>Click for 2000 & 2010 Census Data</div>";
+                        "<div class = 'extra_data'><span class = 'pop_year'>2000</span> Density (Sq Mi): <span id = 'county_density'</span></div>";
     }
 
-    this.cityTooltip = function(){
-        return "<div id = 'city_info' class = city_record'>City: <span id = 'city_name'></span></div>"
-    }
 }
