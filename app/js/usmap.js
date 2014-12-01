@@ -12,7 +12,7 @@ $(document).ready(function(){
         projection,
         path,
         zoom, 
-        svg,
+        maineSvg,
         tooltip,
         data,
         pop;
@@ -47,21 +47,13 @@ $(document).ready(function(){
                     .scaleExtent([1, 3])
                     .on("zoom", zoom);
 
-        //initialize map element SVG with basic attribute settings
-        svg = d3.select("#map_container")
-                    .append("svg")
-                    .attr("width", defaults.getWidth())
-                    .attr("height", defaults.getHeight())
-                    .attr("transform", "translate(-5, -5)")
-                    .call(zoom);        
+        //initialize map element maineSvg with basic attribute settings
+        maineSvg = createSvg("map_container", defaults.getWidth(), defaults.getHeight()); 
 
         //set the background rectangle
-        svg.append("rect")
-            .attr("class", "background")
-            .attr("width", defaults.getWidth())
-            .attr("height", defaults.getHeight());
+        countrySvg = createSvg("country_container", 1200, 800);
 
-        //initialize tooltip overlay element
+        //initialize tooltip overlay element and bind to body element
         tooltip = d3.select("body")
                     .append("div")
                     .attr("class", "tooltip");
@@ -73,24 +65,9 @@ $(document).ready(function(){
         //add template html to overlay
         $("#countyName").append(defaults.defaultTooltipTemplate());    
 
-        //Get path data and draw SVG
-        d3.json(defaults.getUrls().maine, function(e, map){            
-
-            g = svg.append("g"); //initialze new g element as a child of svg
-
-            g.append("g")                       //append a new g layer
-                .attr("class", "counties")      //layer id
-                .selectAll("path")              //select all paths
-                .data(map.features)             //set the map paths as a relational join https://github.com/mbostock/d3/wiki/Selections#data
-                .enter()                        //returns placeholder nodes for each data element for which no DOM node was found
-                .append("path")                 //create new path element
-                .attr("d", path)                //add coordinate-to-pixel data to path
-                .attr("class", function(d){     //set the county name as a DOM class value
-                    return d.properties.name;
-                })
-                .on("mouseover", showTooltip)   //mouseover event handler, show the tooltip
-                .on("mousemove", updateTooltip) //have tooltip follow mouse within boundaries of current county path
-                .on("mouseout", hideTooltip);   //hide the tooltip
+        //Get path data and draw maineSvg
+        d3.json(defaults.getUrls().maine, function(e, map){ 
+            generateMap(e, map, maineSvg);           
         });
             
     }
@@ -135,6 +112,40 @@ $(document).ready(function(){
     function zoom(){
         //console.log(d3.event.translate);
         g.attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
+    }
+
+    function createSvg(elemName, width, height){
+        var svg =  d3.select("#" + elemName)
+                        .append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .attr("transform", "translate(-5, -5)")
+                        .call(zoom);   
+
+        svg.append("rect")
+                .attr("class", "background")
+                .attr("width", width)
+                .attr("height", height);
+
+        return svg;
+    }
+
+    function generateMap(e, map, svg){
+        g = svg.append("g"); //initialze new g element as a child of svg elem
+
+        g.append("g")                       //append a new g layer
+            .attr("class", "counties")      //layer id
+            .selectAll("path")              //select all paths
+            .data(map.features)             //set the map paths as a relational join https://github.com/mbostock/d3/wiki/Selections#data
+            .enter()                        //returns placeholder nodes for each data element for which no DOM node was found
+            .append("path")                 //create new path element
+            .attr("d", path)                //add coordinate-to-pixel data to path
+            .attr("class", function(d){     //set the county name as a DOM class value
+                return d.properties.name;
+            })
+            .on("mouseover", showTooltip)   //mouseover event handler, show the tooltip
+            .on("mousemove", updateTooltip) //have tooltip follow mouse within boundaries of current county path
+            .on("mouseout", hideTooltip);   //hide the tooltip
     }
 
 });
