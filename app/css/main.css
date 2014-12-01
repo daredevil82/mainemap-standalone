@@ -1,0 +1,152 @@
+.background{
+    fill : lightgoldenrodyellow;
+    pointer-events : all;
+
+}
+
+svg{
+    border : 1px solid black;
+    border-radius: 5px;
+}
+
+.counties path{
+    fill : #aaa;
+    stroke : #000000;
+    stroke-width : 1.0px;
+}
+
+.counties path:hover{
+    fill : blue;
+}
+
+div.tooltip {
+    position : absolute;
+    width : 150px;
+    padding : 10px;
+    font : 12px sans-serif;
+    background : #fff;
+    border-radius: 10px;
+    border : 1px solid #aaa;
+    pointer-events : none;
+}
+
+.extra_data {
+    display: none;
+}
+
+#map_container{
+    display: inline-block;
+    float: left;
+}
+
+#data_wrapper{
+    width: 600px;
+    height : 580px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    border-radius: 10px;
+    margin-left: 40px;
+    padding: 10px;
+}
+
+#map_data_wrapper{
+    height : 250px;
+}
+
+.hide_element{
+    visibility: hidden;
+}
+
+.show_element{
+    visibility: visible;
+}
+
+.inline-left {
+    display: inline-block;
+    float: left;
+}
+
+#population_slider_wrapper{
+    width: 500px;
+}
+
+#population_slider{
+    width: 300px;
+    height: 10px;
+    margin : 20px auto;
+}
+
+#slider_value{
+    width : 100px;
+    height : 30px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 115px;
+    margin-top: 45px;
+    border : 1px solid black;
+    position: absolute;
+}
+
+#map_colors{
+    width: 500px;
+    height: 30px;
+    margin-top: 155px;
+}
+
+.chloropleth_boxes{
+    width : 45px;
+    height : 30px;
+    display: inline-block;
+    float: left;
+    margin-left: 3px;
+    border : 1px solid black;
+    border-radius: 5px;
+}
+
+.box_label {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#county_data{
+    margin-top : 25px;
+}
+
+#county_data_selection{
+    width: 540px;
+    margin: 0px auto 20px auto;
+}
+
+#county_id{
+    font-weight: bold;
+    height : 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+#county_data_display{
+    width : 585px;
+    margin : 0 auto;
+}
+
+.data_element{
+    width: 187px;
+    height : 230px;
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.data_label{
+    height: 20px;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <meta charset = "utf-8">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css">
+
+        <script src = "//cdnjs.cloudflare.com/ajax/libs/d3/3.4.0/d3.min.js"></script>
+        <script src = "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+        <script src = "/static/js/plugin/jquery.cookie.js"></script>
+        <script src = "/static/js/plugin/jquery.csrf.js"></script>
+        <script src = "/static/js/plugin/sprintf.js"></script>
+
+        <script src = "/static/js/defaults.js"></script>
+        <script src = "/static/js/usmap.js"></script>
+    </head>
+
+    <body>
+        <div id = "map_container"></div>
+        <div id = "data_wrapper">
+            <div id = "map_data_wrapper">
+                <div id = "map_selection">
+                    <input type = "radio" name = "map_option" id = "pop_hist_map" class = "pop_button">
+                    <label for = "pop_hist_map">Pop: Total</label>
+                    <input type = "radio" name = "map_option" id = "pop_dens_map" class = "pop_button">
+                    <label for = "pop_dens_map">Pop: Density</label>
+                </div>
+                <div id = "population_slider_wrapper" class = "hide_element">
+                    <div id = "population_slider" class = "inline-left"></div>
+                    <div id = "slider_value"></div>
+                </div>
+                <div id = "map_colors"></div>
+                <div id = "county_data" class = "hide_element">
+                    <div id = "county_id">County: <span id = "selected_name"></div>
+                    <div id = "county_data_selection">
+                        <input type = "radio" name = "data_option" id = "pop_data" class = "data_button">
+                        <label for = "pop_data">Population</label>
+                        <input type = "radio" name = "data_option" id = "demo_data" class = "data_button">
+                        <label for = "demo_data">Demographics</label>
+                        <input type = "radio" name = "data_option" id = "fam_data" class = "data_button">
+                        <label for = "fam_data">Family</label>
+                        <input type = "radio" name = "data_option" id = "house_data" class = "data_button">
+                        <label for = "house_data">Housing</label>
+                    </div>
+                    <div id = "county_data_display" class = "data_wrapper">
+                        <div id = "data_2010" class = 'data_element'>
+                            <div class = "data_label">2010 <span class = "data_type"></span></div>
+                        </div>
+                        <div id = "data_2000" class = 'data_element'>
+                            <div class = "data_label">2000 <span class = "data_type"></span></div>
+                        </div>
+                        <div id = "data_change" class = 'data_element'>
+
+                            <div class = "data_label"><span class = "data_type"></span> Change</div>
+
+                            <div id = "data_display">
+                                <div id = "pop_change_wrapper" class = "hide_element">
+                                    <div id = "pop_change">
+                                        Population: <span id = "pop_change_total"></span> <span id = "pop_change_percent"></span>
+                                    </div>
+                                    
+                                    <div id = "density_change">
+                                        Density: <span id = "pop_change_density"></span> <span id = "pop_density_percent"></span>
+                                    </div>
+
+                                    <div id = "median_change">
+                                        Average Age: <span id = "pop_change_median"></span> <span id = "pop_median_percent"></span>
+                                    </div>
+
+                                    <div id = "male_change">
+                                        Males: <span id = "pop_change_males"></span> <span id = "pop_male_percent"></span>
+                                    </div>
+
+                                    <div id = "female_change">
+                                        Females: <span id = "pop_change_median"></span> <span id = "pop_median_percent"></span>
+                                    </div>
+                                </div>
+                                <div id = "demo_change_wrapper" class = "hide_element"></div>
+                                <div id = "fam_change_wrapper" class = "hide_element"></div>
+                                <div id = "house_change_wrapper" class = "hide_element"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
